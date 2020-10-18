@@ -10,6 +10,8 @@ import UIKit
 class StopperController: UIViewController, UITableViewDataSource {
 
     @IBOutlet weak var buttonsPad: UIStackView!
+    @IBOutlet weak var rightButton: UIButton!
+    @IBOutlet weak var leftButton: UIButton!
     @IBOutlet weak var runButton: UIButton!
     @IBOutlet weak var timeLabel: UILabel! {
         didSet{
@@ -25,6 +27,32 @@ class StopperController: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        leftButton.alpha = 0
+        rightButton.alpha = 0
+        
+        setStopperTimesTable()
+//        stopperTimesTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+//
+//        view.addSubview(stopperTimesTable)
+//
+//        stopperTimesTable.translatesAutoresizingMaskIntoConstraints = false
+//        stopperTimesTable.topAnchor.constraint(equalTo:view.topAnchor).isActive = true
+//        stopperTimesTable.leftAnchor.constraint(equalTo:view.leftAnchor).isActive = true
+//        stopperTimesTable.rightAnchor.constraint(equalTo:view.rightAnchor).isActive = true
+//
+//        //100 = cellHeight better create a constant and use here and at cellforrowAt create and activate constraint here, deactivate, recreate and activate at flagStopper func with condition after reload
+////        if CGFloat((stopperTimes.count + 1)) * 100.00 < view.frame.height * 0.75 {
+////            stopperTimesTable.bottomAnchor.constraint(equalTo: buttonsPad.centerYAnchor, constant: -1 * buttonsPad.frame.height).isActive = true
+////        }
+//
+//        stopperTimesTable.bottomAnchor.constraint(equalTo: buttonsPad.centerYAnchor, constant: -1 * buttonsPad.frame.height).isActive = true
+//
+//        stopperTimesTable.alpha = 0
+//        stopperTimesTable.dataSource = self
+
+    }
+    
+    func setStopperTimesTable() {
         stopperTimesTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
             
         view.addSubview(stopperTimesTable)
@@ -45,9 +73,49 @@ class StopperController: UIViewController, UITableViewDataSource {
         stopperTimesTable.dataSource = self
 
     }
+    //MARK: IBAction funcs
     
-    @IBAction func startTimer(_ sender: UIButton) {
+    @IBAction func switchButtons(_ sender: UIButton) {
+        let buttonTitle = sender.title(for: .normal)
+
+        switch buttonTitle {
+        case "Run":
+            startTimer(sender)
+            if rightButton.titleLabel?.text == "Run" {
+                rightButton.setTitle("Pause", for: .normal)
+                rightButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+                leftButton.setTitle("Flag", for: .normal) //Stop
+                leftButton.setImage(UIImage(systemName: "flag.fill"), for: .normal)
+            }
+        case "Pause":
+            rightButton.setTitle("Run", for: .normal)
+            rightButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
+            leftButton.setTitle("Reset", for: .normal) //Stop
+            leftButton.setImage(UIImage(systemName: "stop.fill"), for: .normal)
+            pauseTimer(sender)
+        case "Flag":
+            flagStopperCurrentTime(sender)
+        default:
+            if stopperTimes.count > 0 {
+                stopperTimes = []
+//                stopperTimesTable.alpha = 0
+                stopperTimesTable.removeFromSuperview()
+                stopperTimesTable = UITableView()
+                setStopperTimesTable()
+                timeLabel.alpha = 1
+            }
+            
+            resetTimer(sender)
+        }
+    }
+    
+//    @IBAction func startTimer(_ sender: UIButton) {
+    func startTimer(_ sender: UIButton) {
         isInvalidated = false
+        leftButton.alpha = 1
+        rightButton.alpha = 1
+        runButton.alpha = 0
+        
         timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
         
         //        var lastRunningTime = "\(String(format: "%.2f", lastStartDate.distance(to: Date())))"
@@ -66,7 +134,8 @@ class StopperController: UIViewController, UITableViewDataSource {
         //        timeLabel.text = "\(String(format: "%.2f", lastRunningTime))"
     }
     
-    @IBAction func flagStopperCurrentTime(_ sender: UIButton) {
+//    @IBAction func flagStopperCurrentTime(_ sender: UIButton) {
+    func flagStopperCurrentTime(_ sender: UIButton) {
         stopperTimes.append((minutes, seconds, milliseconds))
         
         for time in stopperTimes {
@@ -78,7 +147,31 @@ class StopperController: UIViewController, UITableViewDataSource {
         startTimer(runButton)
     }
     
-    @IBAction func stopTimer(_ sender: Any) {
+//    @IBAction func stopTimer(_ sender: Any) {
+    func resetTimer(_ sender: Any) {
+        isInvalidated = true
+        timer?.invalidate()
+        
+        timer = nil
+        
+        rightButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+        leftButton.setImage(UIImage(systemName: "flag.fill"), for: .normal)
+        
+        leftButton.alpha = 0
+        rightButton.alpha = 0
+        runButton.alpha = 1
+        
+        rightButton.setTitle("Pause", for: .normal)
+        leftButton.setTitle("Flag", for: .normal)
+        
+        minutes = 0
+        seconds = 0
+        milliseconds = 0
+        
+        timeLabel.text = "00:00.00"
+    }
+    
+    func pauseTimer(_ sender: Any) {
         isInvalidated = true
         timer?.invalidate()
     }
@@ -116,7 +209,7 @@ class StopperController: UIViewController, UITableViewDataSource {
         
         if stopperTimes.count > 0 {
             let index = IndexPath(row: 0, section: 0)
-            stopperTimesTable.reloadRows(at: [index], with: .automatic)
+            stopperTimesTable.reloadRows(at: [index], with: .none)
         }
     }
     

@@ -22,28 +22,28 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="xOf-Vi-dm4">
-                                <rect key="frame" x="138" y="771" width="138" height="30"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="xOf-Vi-dm4">
+                                <rect key="frame" x="138" y="779" width="138" height="22"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rsy-Li-var">
-                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
-                                        <state key="normal" title="Flag"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rsy-Li-var">
+                                        <rect key="frame" x="0.0" y="0.0" width="46" height="22"/>
+                                        <state key="normal" title="Flag" image="flag.fill" catalog="system"/>
                                         <connections>
-                                            <action selector="flagStopperCurrentTime:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1Wi-R1-5ib"/>
+                                            <action selector="switchButtons:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BDh-Em-KP9"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aON-f1-WDj">
-                                        <rect key="frame" x="53" y="0.0" width="30" height="30"/>
-                                        <state key="normal" title="Run"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aON-f1-WDj">
+                                        <rect key="frame" x="46" y="0.0" width="46" height="22"/>
+                                        <state key="normal" title="Run" image="play.fill" catalog="system"/>
                                         <connections>
-                                            <action selector="startTimer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fTT-DJ-3G1"/>
+                                            <action selector="switchButtons:" destination="BYZ-38-t0r" eventType="touchUpInside" id="R3B-TI-6vs"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oTE-NQ-2Jx">
-                                        <rect key="frame" x="106" y="0.0" width="32" height="30"/>
-                                        <state key="normal" title="Stop"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oTE-NQ-2Jx">
+                                        <rect key="frame" x="92" y="0.0" width="46" height="22"/>
+                                        <state key="normal" title="Pause" image="pause.fill" catalog="system"/>
                                         <connections>
-                                            <action selector="stopTimer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Mmv-Ra-o9k"/>
+                                            <action selector="switchButtons:" destination="BYZ-38-t0r" eventType="touchUpInside" id="d35-q2-fjx"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -62,6 +62,8 @@
                     </view>
                     <connections>
                         <outlet property="buttonsPad" destination="xOf-Vi-dm4" id="JgI-TD-wSC"/>
+                        <outlet property="leftButton" destination="rsy-Li-var" id="4GV-vF-NhZ"/>
+                        <outlet property="rightButton" destination="oTE-NQ-2Jx" id="hgx-We-sTC"/>
                         <outlet property="runButton" destination="aON-f1-WDj" id="PSj-Eb-lAQ"/>
                         <outlet property="timeLabel" destination="ahS-3P-SX5" id="o0X-X0-CXN"/>
                     </connections>
@@ -72,6 +74,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="flag.fill" catalog="system" width="128" height="121"/>
+        <image name="pause.fill" catalog="system" width="116" height="128"/>
+        <image name="play.fill" catalog="system" width="116" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
