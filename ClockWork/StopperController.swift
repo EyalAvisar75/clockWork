@@ -22,6 +22,7 @@ class StopperController: UIViewController, UITableViewDataSource {
     }
     
     var stopperTimesTable = UITableView()
+    var heightConstraint:NSLayoutConstraint?
     var isInvalidated = true
     
     override func viewDidLoad() {
@@ -62,17 +63,41 @@ class StopperController: UIViewController, UITableViewDataSource {
         stopperTimesTable.leftAnchor.constraint(equalTo:view.leftAnchor).isActive = true
         stopperTimesTable.rightAnchor.constraint(equalTo:view.rightAnchor).isActive = true
         
+        setHeightConstraint(cells: 0)
+//        let height:CGFloat = 800
+//        heightConstraint = NSLayoutConstraint(item: stopperTimesTable, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: height)
+//        heightConstraint?.isActive = true
+
+//        ???stopperTimesTable.heightAnchor???instead of bottom anchor?
         //100 = cellHeight better create a constant and use here and at cellforrowAt create and activate constraint here, deactivate, recreate and activate at flagStopper func with condition after reload
 //        if CGFloat((stopperTimes.count + 1)) * 100.00 < view.frame.height * 0.75 {
 //            stopperTimesTable.bottomAnchor.constraint(equalTo: buttonsPad.centerYAnchor, constant: -1 * buttonsPad.frame.height).isActive = true
 //        }
         
-        stopperTimesTable.bottomAnchor.constraint(equalTo: buttonsPad.centerYAnchor, constant: -1 * buttonsPad.frame.height).isActive = true
+//        stopperTimesTable.bottomAnchor.constraint(equalTo: buttonsPad.centerYAnchor, constant: -1 * buttonsPad.frame.height).isActive = true
         
         stopperTimesTable.alpha = 0
         stopperTimesTable.dataSource = self
 
     }
+    
+    func setHeightConstraint(cells:Int) {
+        if stopperTimes.count > 0 {
+            timeLabel.alpha = 0
+        }
+        
+        heightConstraint?.isActive = false
+        var measure = stopperTimes.count < 2 ? 300 : 175
+        if stopperTimes.count > 3 {
+            measure = 150
+        }
+        
+        var height:CGFloat = CGFloat(cells * measure)
+        height = height > view.frame.height * 0.8 ? view.frame.height * 0.8 : height
+        heightConstraint = NSLayoutConstraint(item: stopperTimesTable, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: height)
+        heightConstraint?.isActive = true
+    }
+    
     //MARK: IBAction funcs
     
     @IBAction func switchButtons(_ sender: UIButton) {
@@ -104,7 +129,9 @@ class StopperController: UIViewController, UITableViewDataSource {
                 setStopperTimesTable()
                 timeLabel.alpha = 1
             }
-            
+            minutes = 0
+            seconds = 0
+            milliseconds = 0
             resetTimer(sender)
         }
     }
@@ -142,6 +169,7 @@ class StopperController: UIViewController, UITableViewDataSource {
             print(time)
         }
         
+        setHeightConstraint(cells: stopperTimes.count)
         stopperTimesTable.reloadData()
         stopperTimesTable.alpha = 1
         startTimer(runButton)
@@ -177,7 +205,6 @@ class StopperController: UIViewController, UITableViewDataSource {
     }
     
     @objc func fireTimer() {
-//        print("Timer fired! \(milliseconds)")
         if isInvalidated {
             return
         }
@@ -196,7 +223,7 @@ class StopperController: UIViewController, UITableViewDataSource {
             seconds = 0
         }
         
-        screenTime = "\(String(format: "%02d", minutes)):\(String(format: "%02d", seconds)):\(String(format: "%02d", screenMilliSeconds))"
+        screenTime = "\(String(format: "%02d", minutes)):\(String(format: "%02d", seconds)).\(String(format: "%02d", screenMilliSeconds))"
         
         //supposed to solve "shaking text problem" but changes it to "ticking text problem"
         let attrString = NSMutableAttributedString(string: screenTime as String)
@@ -205,7 +232,6 @@ class StopperController: UIViewController, UITableViewDataSource {
                                             weight: UIFont.Weight.regular), range: NSMakeRange(attrString.length - 1, 1))
 
         timeLabel.attributedText = attrString
-//        timeLabel.text = screenTime
         
         if stopperTimes.count > 0 {
             let index = IndexPath(row: 0, section: 0)
@@ -238,11 +264,13 @@ class StopperController: UIViewController, UITableViewDataSource {
         let cellSeconds = stopperTimes[stopperTimeIndex].1
         let cellMilliseconds = Int(stopperTimes[stopperTimeIndex].2 * 100)
             
-        let cellScreenTime = "\(String(format: "%02d", cellMinutes)):\(String(format: "%02d", cellSeconds)):\(String(format: "%02d", cellMilliseconds))"
+        let cellScreenTime = "\(String(format: "%02d", cellMinutes)):\(String(format: "%02d", cellSeconds)).\(String(format: "%02d", cellMilliseconds))"
         
         print("time: \(cellScreenTime)")
         cell.textLabel?.text = cellScreenTime
         return cell
     }
+    
+    
     
 }
