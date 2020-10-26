@@ -16,6 +16,8 @@
 		181397582535F4C20048BE5F /* ClockWorkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181397572535F4C20048BE5F /* ClockWorkUITests.swift */; };
 		1813976C2535F5E20048BE5F /* StopperController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1813976B2535F5E20048BE5F /* StopperController.swift */; };
 		181397712535F62A0048BE5F /* StopperModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181397702535F62A0048BE5F /* StopperModel.swift */; };
+		18B2C4322545372B00C8B503 /* ClockState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B2C4312545372A00C8B503 /* ClockState.swift */; };
+		18B2C43A2545484D00C8B503 /* TimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B2C4392545484D00C8B503 /* TimerController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		181397592535F4C20048BE5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1813976B2535F5E20048BE5F /* StopperController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopperController.swift; sourceTree = "<group>"; };
 		181397702535F62A0048BE5F /* StopperModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopperModel.swift; sourceTree = "<group>"; };
+		18B2C4312545372A00C8B503 /* ClockState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockState.swift; sourceTree = "<group>"; };
+		18B2C4392545484D00C8B503 /* TimerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,7 +108,9 @@
 				181397352535F49D0048BE5F /* AppDelegate.swift */,
 				181397372535F49D0048BE5F /* SceneDelegate.swift */,
 				1813976B2535F5E20048BE5F /* StopperController.swift */,
+				18B2C4392545484D00C8B503 /* TimerController.swift */,
 				181397702535F62A0048BE5F /* StopperModel.swift */,
+				18B2C4312545372A00C8B503 /* ClockState.swift */,
 				1813973B2535F49D0048BE5F /* Main.storyboard */,
 				1813973E2535F4C10048BE5F /* Assets.xcassets */,
 				181397402535F4C10048BE5F /* LaunchScreen.storyboard */,
@@ -263,8 +269,10 @@
 			files = (
 				181397362535F49D0048BE5F /* AppDelegate.swift in Sources */,
 				181397382535F49D0048BE5F /* SceneDelegate.swift in Sources */,
+				18B2C4322545372B00C8B503 /* ClockState.swift in Sources */,
 				1813976C2535F5E20048BE5F /* StopperController.swift in Sources */,
 				181397712535F62A0048BE5F /* StopperModel.swift in Sources */,
+				18B2C43A2545484D00C8B503 /* TimerController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

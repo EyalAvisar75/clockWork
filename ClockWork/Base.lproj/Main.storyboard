@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2hO-19-lB6">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
@@ -71,6 +71,85 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="47.826086956521742" y="57.589285714285708"/>
+        </scene>
+        <!--Timer Controller-->
+        <scene sceneID="BnL-6p-9qq">
+            <objects>
+                <viewController id="2hO-19-lB6" customClass="TimerController" customModule="ClockWork" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2DV-Vu-fDT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hX6-A0-omf">
+                                <rect key="frame" x="0.0" y="367" width="414" height="162"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cs5-hg-PS2">
+                                <rect key="frame" x="138.5" y="428.5" width="137" height="39.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="zK5-pn-ohj">
+                                <rect key="frame" x="138" y="771" width="138" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mxd-Uz-V6Y">
+                                        <rect key="frame" x="0.0" y="0.0" width="46" height="30"/>
+                                        <state key="normal" title="Left"/>
+                                        <connections>
+                                            <action selector="buttonTapped:" destination="2hO-19-lB6" eventType="touchUpInside" id="bL2-J0-ea8"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zWS-AJ-RX1">
+                                        <rect key="frame" x="46" y="0.0" width="46" height="30"/>
+                                        <state key="normal" title="Center"/>
+                                        <connections>
+                                            <action selector="buttonTapped:" destination="2hO-19-lB6" eventType="touchUpInside" id="UiZ-bF-LLw"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KlW-CF-IJ4">
+                                        <rect key="frame" x="92" y="0.0" width="46" height="30"/>
+                                        <state key="normal" title="Right"/>
+                                        <connections>
+                                            <action selector="buttonTapped:" destination="2hO-19-lB6" eventType="touchUpInside" id="qVm-Ux-HiO"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="TYd-Jv-xZD">
+                                <rect key="frame" x="71" y="290" width="279" height="319"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="319" id="Zdj-uM-QVy"/>
+                                </constraints>
+                            </activityIndicatorView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="b23-Ka-Yd2"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Cs5-hg-PS2" firstAttribute="centerY" secondItem="2DV-Vu-fDT" secondAttribute="centerY" id="Nto-ke-Gfb"/>
+                            <constraint firstItem="zK5-pn-ohj" firstAttribute="centerX" secondItem="2DV-Vu-fDT" secondAttribute="centerX" id="QjL-uU-muv"/>
+                            <constraint firstItem="b23-Ka-Yd2" firstAttribute="trailing" secondItem="zK5-pn-ohj" secondAttribute="trailing" constant="138" id="QlB-9j-OP0"/>
+                            <constraint firstItem="b23-Ka-Yd2" firstAttribute="trailing" secondItem="TYd-Jv-xZD" secondAttribute="trailing" constant="64" id="RBT-E7-HBF"/>
+                            <constraint firstItem="zK5-pn-ohj" firstAttribute="leading" secondItem="b23-Ka-Yd2" secondAttribute="leading" constant="138" id="VuI-Y4-2Xo"/>
+                            <constraint firstItem="TYd-Jv-xZD" firstAttribute="top" secondItem="b23-Ka-Yd2" secondAttribute="top" constant="246" id="W5x-5I-xCo"/>
+                            <constraint firstItem="TYd-Jv-xZD" firstAttribute="leading" secondItem="b23-Ka-Yd2" secondAttribute="leading" constant="71" id="W6v-LC-5ms"/>
+                            <constraint firstItem="b23-Ka-Yd2" firstAttribute="bottom" secondItem="zK5-pn-ohj" secondAttribute="bottom" constant="61" id="iYH-RP-u7f"/>
+                            <constraint firstItem="Cs5-hg-PS2" firstAttribute="centerX" secondItem="2DV-Vu-fDT" secondAttribute="centerX" id="ySN-lK-T9w"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="TYd-Jv-xZD" id="geH-zJ-84P"/>
+                        <outlet property="buttonsPad" destination="zK5-pn-ohj" id="VdE-CH-64e"/>
+                        <outlet property="centerButton" destination="zWS-AJ-RX1" id="eQJ-Y5-h4F"/>
+                        <outlet property="leftButton" destination="Mxd-Uz-V6Y" id="p3E-uG-kaT"/>
+                        <outlet property="rightButton" destination="KlW-CF-IJ4" id="YvY-8M-CqS"/>
+                        <outlet property="timePicker" destination="hX6-A0-omf" id="PRb-oO-De1"/>
+                        <outlet property="timerLabel" destination="Cs5-hg-PS2" id="bVz-81-VXn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xmh-vs-loQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="727.536231884058" y="68.973214285714278"/>
         </scene>
     </scenes>
     <resources>

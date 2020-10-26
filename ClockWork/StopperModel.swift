@@ -8,9 +8,12 @@
 import Foundation
 
 var stopperTimes:[(Int, Int, Double)] = []
-//var lastStartDate:Date = Date()
 
 var timer: Timer?
 var milliseconds = 0.0
 var seconds = 0
 var minutes = 0
+var hours = 0
+
+var clockState:ClockState = .Timer
+var timerStartTime = ""

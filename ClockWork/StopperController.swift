@@ -32,25 +32,6 @@ class StopperController: UIViewController, UITableViewDataSource {
         rightButton.alpha = 0
         
         setStopperTimesTable()
-//        stopperTimesTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-//
-//        view.addSubview(stopperTimesTable)
-//
-//        stopperTimesTable.translatesAutoresizingMaskIntoConstraints = false
-//        stopperTimesTable.topAnchor.constraint(equalTo:view.topAnchor).isActive = true
-//        stopperTimesTable.leftAnchor.constraint(equalTo:view.leftAnchor).isActive = true
-//        stopperTimesTable.rightAnchor.constraint(equalTo:view.rightAnchor).isActive = true
-//
-//        //100 = cellHeight better create a constant and use here and at cellforrowAt create and activate constraint here, deactivate, recreate and activate at flagStopper func with condition after reload
-////        if CGFloat((stopperTimes.count + 1)) * 100.00 < view.frame.height * 0.75 {
-////            stopperTimesTable.bottomAnchor.constraint(equalTo: buttonsPad.centerYAnchor, constant: -1 * buttonsPad.frame.height).isActive = true
-////        }
-//
-//        stopperTimesTable.bottomAnchor.constraint(equalTo: buttonsPad.centerYAnchor, constant: -1 * buttonsPad.frame.height).isActive = true
-//
-//        stopperTimesTable.alpha = 0
-//        stopperTimesTable.dataSource = self
-
     }
     
     func setStopperTimesTable() {
@@ -64,18 +45,6 @@ class StopperController: UIViewController, UITableViewDataSource {
         stopperTimesTable.rightAnchor.constraint(equalTo:view.rightAnchor).isActive = true
         
         setHeightConstraint(cells: 0)
-//        let height:CGFloat = 800
-//        heightConstraint = NSLayoutConstraint(item: stopperTimesTable, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: height)
-//        heightConstraint?.isActive = true
-
-//        ???stopperTimesTable.heightAnchor???instead of bottom anchor?
-        //100 = cellHeight better create a constant and use here and at cellforrowAt create and activate constraint here, deactivate, recreate and activate at flagStopper func with condition after reload
-//        if CGFloat((stopperTimes.count + 1)) * 100.00 < view.frame.height * 0.75 {
-//            stopperTimesTable.bottomAnchor.constraint(equalTo: buttonsPad.centerYAnchor, constant: -1 * buttonsPad.frame.height).isActive = true
-//        }
-        
-//        stopperTimesTable.bottomAnchor.constraint(equalTo: buttonsPad.centerYAnchor, constant: -1 * buttonsPad.frame.height).isActive = true
-        
         stopperTimesTable.alpha = 0
         stopperTimesTable.dataSource = self
 
@@ -136,7 +105,6 @@ class StopperController: UIViewController, UITableViewDataSource {
         }
     }
     
-//    @IBAction func startTimer(_ sender: UIButton) {
     func startTimer(_ sender: UIButton) {
         isInvalidated = false
         leftButton.alpha = 1
@@ -145,23 +113,10 @@ class StopperController: UIViewController, UITableViewDataSource {
         
         timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
         
-        //        var lastRunningTime = "\(String(format: "%.2f", lastStartDate.distance(to: Date())))"
-                
-        //        let queue = DispatchQueue(label: "runTime queue")
-        //        queue.async {
-                    
-        //            let runTime = "\(String(format: "%.2f", lastStartDate.distance(to: Date())))"
-        //            if runTime != lastRunningTime {
-        //                print("\(runTime), \(lastRunningTime)")
-        //                lastRunningTime = runTime
                         
-        //            }
-        //        }
-                
         //        timeLabel.text = "\(String(format: "%.2f", lastRunningTime))"
     }
     
-//    @IBAction func flagStopperCurrentTime(_ sender: UIButton) {
     func flagStopperCurrentTime(_ sender: UIButton) {
         stopperTimes.append((minutes, seconds, milliseconds))
         
@@ -175,7 +130,6 @@ class StopperController: UIViewController, UITableViewDataSource {
         startTimer(runButton)
     }
     
-//    @IBAction func stopTimer(_ sender: Any) {
     func resetTimer(_ sender: Any) {
         isInvalidated = true
         timer?.invalidate()
@@ -253,7 +207,6 @@ class StopperController: UIViewController, UITableViewDataSource {
             
             cell.textLabel?.text = timeLabel.text
             cell.textLabel?.font = UIFont.systemFont(ofSize: 30.0)
-//            cell.textLabel?.font.withSize(30)
             return cell
         }
         
@@ -270,7 +223,4 @@ class StopperController: UIViewController, UITableViewDataSource {
         cell.textLabel?.text = cellScreenTime
         return cell
     }
-    
-    
-    
 }
