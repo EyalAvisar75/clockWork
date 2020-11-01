@@ -53,7 +53,7 @@ class StopperController: UIViewController, UITableViewDataSource {
     func setHeightConstraint(cells:Int) {
         if stopperTimes.count > 0 {
             timeLabel.alpha = 0
-        }
+    }
         
         heightConstraint?.isActive = false
         var measure = stopperTimes.count < 2 ? 300 : 175

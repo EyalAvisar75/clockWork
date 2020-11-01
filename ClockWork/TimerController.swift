@@ -18,6 +18,7 @@ class TimerController: UIViewController, UIPickerViewDelegate, UIPickerViewDataS
     @IBOutlet weak var timePicker: UIPickerView!
     @IBOutlet weak var timerLabel: UILabel!
     
+    var isDisplayed = false
     var isTimerRunning = false
     
     override func viewDidLoad() {
@@ -109,8 +110,8 @@ class TimerController: UIViewController, UIPickerViewDelegate, UIPickerViewDataS
         let center = UNUserNotificationCenter.current()
 
         let content = UNMutableNotificationContent()
-        content.title = "Late wake up call"
-        content.body = "The early bird catches the worm, but the second mouse gets the cheese."
+        content.title = "it's a kind of virus"
+        content.body = "what a programming glitch!!"
         content.categoryIdentifier = "alarm"
         content.userInfo = ["customData": "fizzbuzz"]
         content.sound = UNNotificationSound.default
@@ -119,11 +120,11 @@ class TimerController: UIViewController, UIPickerViewDelegate, UIPickerViewDataS
         let date = Date(timeIntervalSinceNow: TimeInterval(timeInterval))
 //        let triggerDate = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
 
-        let triggerDaily = Calendar.current.dateComponents([.hour, .minute, .second], from: date)
-         let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDaily, repeats: false)
+        let triggerDaily = Calendar.current.dateComponents([.nanosecond], from: date)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDaily, repeats: false)
 
 //        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-        let identifier = "UYLLocalNotification"
+        let identifier = "Local Notification"
         let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
 
         center.add(request, withCompletionHandler: { (error) in
@@ -131,6 +132,13 @@ class TimerController: UIViewController, UIPickerViewDelegate, UIPickerViewDataS
                 print(error.localizedDescription)
              }
          })
+        
+        let deleteAction = UNNotificationAction(identifier: "Delete", title: "Delete", options: [.destructive])
+        let userActions = "User Actions"
+        let category = UNNotificationCategory(identifier: userActions, actions: [deleteAction], intentIdentifiers: [], options: [])
+        center.setNotificationCategories([category])
+        content.categoryIdentifier = userActions
+
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter,
@@ -146,10 +154,14 @@ class TimerController: UIViewController, UIPickerViewDelegate, UIPickerViewDataS
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                        didReceive response: UNNotificationResponse,
                                        withCompletionHandler completionHandler: @escaping () -> Void) {
-               let userInfo = response.notification.request.content.userInfo
+        let userInfo = response.notification.request.content.userInfo
                // Print full message.
-               print("tap on on foreground app",userInfo)
-               completionHandler()
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["Local Notification"])
+        if response.notification.request.identifier == "Local Notification" {
+                print(userInfo)
+        }
+        
+        completionHandler()
     }
     
     @objc func fireTimer() {
