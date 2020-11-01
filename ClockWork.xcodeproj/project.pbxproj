@@ -19,6 +19,7 @@
 		1842075025480FC100D549C4 /* ClockFunctionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1842074F25480FC100D549C4 /* ClockFunctionsController.swift */; };
 		184207552548227900D549C4 /* ClockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184207542548227900D549C4 /* ClockController.swift */; };
 		18B2C43A2545484D00C8B503 /* TimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B2C4392545484D00C8B503 /* TimerController.swift */; };
+		18D71593254EB0EA00DF8576 /* ClockZoneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D71592254EB0EA00DF8576 /* ClockZoneController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		1842074F25480FC100D549C4 /* ClockFunctionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockFunctionsController.swift; sourceTree = "<group>"; };
 		184207542548227900D549C4 /* ClockController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockController.swift; sourceTree = "<group>"; };
 		18B2C4392545484D00C8B503 /* TimerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerController.swift; sourceTree = "<group>"; };
+		18D71592254EB0EA00DF8576 /* ClockZoneController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockZoneController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 				184207542548227900D549C4 /* ClockController.swift */,
 				181397702535F62A0048BE5F /* ClockModel.swift */,
 				1842074F25480FC100D549C4 /* ClockFunctionsController.swift */,
+				18D71592254EB0EA00DF8576 /* ClockZoneController.swift */,
 				1813973B2535F49D0048BE5F /* Main.storyboard */,
 				1813973E2535F4C10048BE5F /* Assets.xcassets */,
 				181397402535F4C10048BE5F /* LaunchScreen.storyboard */,
@@ -270,6 +273,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18D71593254EB0EA00DF8576 /* ClockZoneController.swift in Sources */,
 				184207552548227900D549C4 /* ClockController.swift in Sources */,
 				1842075025480FC100D549C4 /* ClockFunctionsController.swift in Sources */,
 				181397362535F49D0048BE5F /* AppDelegate.swift in Sources */,

@@ -15,8 +15,6 @@ class ClockController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let timeZoneIdentifiers = TimeZone.knownTimeZoneIdentifiers
-        print(timeZoneIdentifiers)
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
     }
     
@@ -33,4 +31,10 @@ class ClockController: UIViewController {
         dateLabel.text = screenDate
     }
 
+    @IBAction func showClockZones(_ sender: Any) {
+        guard let zonesVC = storyboard?.instantiateViewController(withIdentifier: "zones") else {
+            return
+        }
+        navigationController?.pushViewController(zonesVC, animated: true)
+    }
 }

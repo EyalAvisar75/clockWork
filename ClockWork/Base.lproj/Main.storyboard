@@ -8,6 +8,21 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Clock Zone Controller-->
+        <scene sceneID="0Wl-g7-VJl">
+            <objects>
+                <viewController storyboardIdentifier="zones" id="pWK-Ap-42d" customClass="ClockZoneController" customModule="ClockWork" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ehw-lM-hrX">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Wmk-kK-4gQ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vUt-9Y-k9s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1312" y="58"/>
+        </scene>
         <!--Clock Controller-->
         <scene sceneID="7w9-yB-CAf">
             <objects>
@@ -16,18 +31,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NhF-cf-K1C">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NhF-cf-K1C">
                                 <rect key="frame" x="20" y="137.5" width="170" height="71.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BvR-db-cd7">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current:10.10.20" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BvR-db-cd7">
                                 <rect key="frame" x="71" y="249" width="223" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TYl-zk-GwC">
+                                <rect key="frame" x="119" y="440" width="175" height="102"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="+"/>
+                                <connections>
+                                    <action selector="showClockZones:" destination="VkA-Io-XbV" eventType="touchUpInside" id="4Y9-Gk-OpR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="5cH-oN-tl2"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -37,8 +60,10 @@
                             <constraint firstItem="5cH-oN-tl2" firstAttribute="bottom" secondItem="BvR-db-cd7" secondAttribute="bottom" constant="577" id="Az9-EG-zDo"/>
                             <constraint firstItem="NhF-cf-K1C" firstAttribute="top" secondItem="5cH-oN-tl2" secondAttribute="top" constant="93.5" id="DC9-mv-gdV"/>
                             <constraint firstItem="BvR-db-cd7" firstAttribute="leading" secondItem="5cH-oN-tl2" secondAttribute="leading" constant="71" id="DFJ-mQ-8D8"/>
+                            <constraint firstItem="TYl-zk-GwC" firstAttribute="centerY" secondItem="7hC-Fa-Xle" secondAttribute="centerY" constant="43" id="LvF-Tv-n7m"/>
                             <constraint firstItem="BvR-db-cd7" firstAttribute="top" secondItem="NhF-cf-K1C" secondAttribute="bottom" constant="40" id="NAY-6U-fFV"/>
                             <constraint firstItem="NhF-cf-K1C" firstAttribute="leading" secondItem="5cH-oN-tl2" secondAttribute="leading" constant="20" id="NHW-NJ-4Hn"/>
+                            <constraint firstItem="TYl-zk-GwC" firstAttribute="centerX" secondItem="7hC-Fa-Xle" secondAttribute="centerX" id="UU8-hs-8pK"/>
                             <constraint firstItem="5cH-oN-tl2" firstAttribute="trailing" secondItem="NhF-cf-K1C" secondAttribute="trailing" constant="224" id="r6R-b3-h9E"/>
                         </constraints>
                     </view>

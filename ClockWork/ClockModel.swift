@@ -15,5 +15,4 @@ var seconds = 0
 var minutes = 0
 var hours = 0
 
-var clockState:ClockState = .Timer
 var timerStartTime = ""
